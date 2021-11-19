@@ -1,0 +1,9 @@
+/*The two rulesets below set all stlyes to alternative box sizing*/
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
