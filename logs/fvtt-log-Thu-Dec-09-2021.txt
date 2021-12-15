@@ -1,0 +1,241 @@
+[12/2/2021, 9:04:59 PM] Leeania
+17
+Perception Skill Check: Leeania
+1d20 + 1 + 3 = 13 + 1 + 3 = 17
+---------------------------
+[12/2/2021, 9:23:21 PM] Akira
+Pass without Trace A veil of shadows and Silence radiates from you, masking you and your companions from detection. For the Duration, each creature you choose within 30 feet of you (including you) has a +10 bonus to Dexterity (Stealth) checks and can’t be tracked except by magical means. A creature that receives this bonus leaves behind no tracks or other traces of its passage. Required Materials. Ashes from a burned leaf of mistletoe and a sprig of spruce
+Place Measured Template
+2nd Level V,S,M,C (Ashes from a burned leaf of mistletoe and a sprig of spruce) 1 Action 30 Feet Radius Self 1 Hours
+---------------------------
+[12/2/2021, 9:24:05 PM] Sir Studly
+20
+Stealth Skill Check: Sir Studly (Disadvantage)
+2d20kl + 0 + 10 = 10 + 0 + 10 = 20
+---------------------------
+[12/2/2021, 9:24:13 PM] Akira
+20
+Stealth Skill Check: Akira
+1d20 + 1 = 19 + 1 = 20
+---------------------------
+[12/2/2021, 9:24:18 PM] Leeania
+29
+Stealth Skill Check: Leeania
+1d20 + 3 + 3 + 10 = 13 + 3 + 3 + 10 = 29
+---------------------------
+[12/2/2021, 9:26:03 PM] Akira
+10
+Perception Skill Check: Akira
+1d20 + 3 = 7 + 3 = 10
+---------------------------
+[12/2/2021, 9:34:55 PM] Akira
+12
+Investigation Skill Check: Akira
+1d20 + 0 = 12 + 0 = 12
+---------------------------
+[12/2/2021, 9:38:49 PM] Leeania
+Silence For the duration, no sound can be created within or pass through a 20-foot-radius sphere centered on a point you choose within range. Any creature or object entirely inside the sphere is immune to thunder damage, and creatures are deafened while entirely inside it. Casting a spell that includes a verbal component is impossible there.Source: Player's Handbook p. 275
+Place Measured Template
+2nd Level V,S,R,C 1 Action 20 Feet Radius 120 Feet Minutes
+---------------------------
+[12/2/2021, 9:52:11 PM] Bugbear
+16
+Bugbear rolls for Initiative!
+1d20 + 2 = 14 + 2 = 16
+---------------------------
+[12/2/2021, 9:52:18 PM] Akira
+14
+Akira rolls for Initiative!
+1d20 + 1 = 13 + 1 = 14
+---------------------------
+[12/2/2021, 9:52:22 PM] Leeania
+5
+Leeania rolls for Initiative!
+1d20 + 3 = 2 + 3 = 5
+---------------------------
+[12/2/2021, 9:52:22 PM] Sir Studly
+20
+Sir Studly rolls for Initiative!
+1d20 + 0 = 20 + 0 = 20
+---------------------------
+[12/2/2021, 9:53:38 PM] Sir Studly
+Longsword A lengthy stright blade designed for slashing foes, the longsword is a highly versatile weapon that may also be wielded with two hands for more punishing strikes.
+Attack Damage Versatile
+Martial Melee Equipped Proficient 1 Action 5 Feet
+---------------------------
+[12/2/2021, 9:53:42 PM] Sir Studly
+16
+Longsword - Attack Roll
+1d20 + 5 + 3 = 8 + 5 + 3 = 16
+---------------------------
+[12/2/2021, 9:53:49 PM] Noah
+9
+Longsword - Damage Roll (Slashing)
+1d8 + 5 = 4 + 5 = 9
+---------------------------
+[12/2/2021, 9:53:56 PM] Sir Studly
+14
+Longsword - Attack Roll
+1d20 + 5 + 3 = 6 + 5 + 3 = 14
+---------------------------
+[12/2/2021, 9:54:11 PM] Akira
+Thorn Whip You create a long, vine-like whip covered in thorns that lashes out at your command toward a creature in range. Make a melee spell attack against the target. If the attack hits, the creature takes 1d6 piercing damage, and if the creature is Large or smaller, you pull the creature up to 10 feet closer to you.This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).Source: Player's Handbook p. 282 Required Materials. the stem of a plant with thorns
+Attack Damage
+Cantrip V,S,M,R (the stem of a plant with thorns) 1 Action 1 Creature 30 Feet Instantaneous
+---------------------------
+[12/2/2021, 9:54:15 PM] Akira
+12
+Thorn Whip - Attack Roll
+1d20 + 3 + 3 = 6 + 3 + 3 = 12
+---------------------------
+[12/2/2021, 9:54:38 PM] Leeania
+Silence For the duration, no sound can be created within or pass through a 20-foot-radius sphere centered on a point you choose within range. Any creature or object entirely inside the sphere is immune to thunder damage, and creatures are deafened while entirely inside it. Casting a spell that includes a verbal component is impossible there. Source: Player's Handbook p. 275
+Place Measured Template
+2nd Level V,S,R,C 1 Action 20 Feet Radius 120 Feet 10 Minutes
+---------------------------
+[12/2/2021, 9:56:18 PM] Sir Studly
+Longsword A lengthy stright blade designed for slashing foes, the longsword is a highly versatile weapon that may also be wielded with two hands for more punishing strikes.
+Attack Damage Versatile
+Martial Melee Equipped Proficient 1 Action 5 Feet
+---------------------------
+[12/2/2021, 9:56:23 PM] Sir Studly
+24
+Longsword - Attack Roll
+1d20 + 5 + 3 = 16 + 5 + 3 = 24
+---------------------------
+[12/2/2021, 9:56:28 PM] Noah
+8
+Longsword - Damage Roll (Slashing)
+1d8 + 5 = 3 + 5 = 8
+---------------------------
+[12/2/2021, 9:56:31 PM] Sir Studly
+26
+Longsword - Attack Roll
+1d20 + 5 + 3 = 18 + 5 + 3 = 26
+---------------------------
+[12/2/2021, 9:56:35 PM] Noah
+7
+Longsword - Damage Roll (Slashing)
+1d8 + 5 = 2 + 5 = 7
+---------------------------
+[12/2/2021, 9:58:19 PM] Bugbear
+Morningstar Morningstar.Melee Weapon Attack: +4, Reach 5 ft., one target. Hit : 11 (2d8 + 2) piercing damage
+Attack Damage
+Martial Melee Equipped Proficient 1 Action 5 Feet
+---------------------------
+[12/2/2021, 9:58:23 PM] Bugbear
+6
+Morningstar - Attack Roll
+1d20 + 2 + 2 = 2 + 2 + 2 = 6
+---------------------------
+[12/2/2021, 9:58:34 PM] Sir Studly
+13
+Longsword - Attack Roll
+1d20 + 5 + 3 = 5 + 5 + 3 = 13
+---------------------------
+[12/2/2021, 9:59:24 PM] Akira
+Thorn Whip You create a long, vine-like whip covered in thorns that lashes out at your command toward a creature in range. Make a melee spell attack against the target. If the attack hits, the creature takes 1d6 piercing damage, and if the creature is Large or smaller, you pull the creature up to 10 feet closer to you.This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).Source: Player's Handbook p. 282 Required Materials. the stem of a plant with thorns
+Attack Damage
+Cantrip V,S,M,R (the stem of a plant with thorns) 1 Action 1 Creature 30 Feet Instantaneous
+---------------------------
+[12/2/2021, 9:59:41 PM] Akira
+14
+Thorn Whip - Attack Roll
+1d20 + 3 + 3 = 8 + 3 + 3 = 14
+---------------------------
+[12/2/2021, 10:00:38 PM] Leeania
+Shortsword A medium sized blade with a firm crossguard and a leather-wrapped handle. A versatile weapon which makes up in versatility what it lacks in reach.
+Attack Damage
+Martial Melee Equipped Proficient 1 Action 5 Feet
+---------------------------
+[12/2/2021, 10:00:45 PM] Leeania
+22
+Shortsword - Attack Roll
+1d20 + 3 + 3 = 16 + 3 + 3 = 22
+---------------------------
+[12/2/2021, 10:00:51 PM] Noah
+4
+Shortsword - Damage Roll (Piercing)
+1d6 + 3 = 1 + 3 = 4
+---------------------------
+[12/2/2021, 10:07:24 PM] Sir Studly
+23
+Stealth Skill Check: Sir Studly (Disadvantage)
+2d20kl + 0 + 10 = 13 + 0 + 10 = 23
+---------------------------
+[12/2/2021, 10:07:32 PM] Leeania
+26
+Stealth Skill Check: Leeania
+1d20 + 3 + 3 + 10 = 10 + 3 + 3 + 10 = 26
+---------------------------
+[12/2/2021, 10:07:39 PM] Akira
+24
+Stealth Skill Check: Akira
+1d20 + 1 + 10 = 13 + 1 + 10 = 24
+---------------------------
+[12/2/2021, 10:08:31 PM] Bugbear
+4
+1d4 = 4 = 4
+---------------------------
+[12/2/2021, 10:13:02 PM] Sir Studly
+21
+Intimidation Skill Check: Sir Studly (Advantage)
+2d20kh + 2 + 3 = 16 + 2 + 3 = 21
+---------------------------
+[12/2/2021, 10:16:01 PM] Timothy
+
+---------------------------
+[12/2/2021, 10:25:46 PM] Akira
+8
+Insight Skill Check: Akira
+1d20 + 3 = 5 + 3 = 8
+---------------------------
+[12/2/2021, 10:26:37 PM] Sir Studly
+Zone of Truth You create a magical zone that guards against deception in a 15-foot-radius sphere centered on a point of your choice within range. Until the spell ends, a creature that enters the spell's area for the first time on a turn or starts its turn there must make a Charisma saving throw. On a failed save, a creature can't speak a deliberate lie while in the radius. You know whether each creature succeeds or fails on its saving throw.An affected creature is aware of the spell and can thus avoid answering questions to which it would normally respond with a lie. Such creatures can be evasive in its answers as long as it remains within the boundaries of the truth.Source: Player's Handbook p. 289
+Saving Throw DC 13 Charisma Place Measured Template
+2nd Level V,S,R 1 Action 15 Feet Radius 60 Feet Minutes
+---------------------------
+[12/2/2021, 10:26:46 PM] Bugbear
+2
+Charisma Saving Throw: Bugbear
+1d20 +  - 1 = 3 +  - 1 = 2
+---------------------------
+[12/2/2021, 10:39:15 PM] Sir Studly
+19
+Intimidation Skill Check: Sir Studly (Advantage)
+2d20kh + 2 + 3 = 14 + 2 + 3 = 19
+---------------------------
+[12/2/2021, 10:47:29 PM] Akira
+Pass without Trace A veil of shadows and Silence radiates from you, masking you and your companions from detection. For the Duration, each creature you choose within 30 feet of you (including you) has a +10 bonus to Dexterity (Stealth) checks and can’t be tracked except by magical means. A creature that receives this bonus leaves behind no tracks or other traces of its passage. Required Materials. Ashes from a burned leaf of mistletoe and a sprig of spruce
+Place Measured Template
+3rd Level V,S,M,C (Ashes from a burned leaf of mistletoe and a sprig of spruce) 1 Action 30 Feet Radius Self 1 Hours
+---------------------------
+[12/2/2021, 10:48:03 PM] Akira
+21
+Stealth Skill Check: Akira
+1d20 + 1 + 10 = 10 + 1 + 10 = 21
+---------------------------
+[12/2/2021, 10:48:05 PM] Sir Studly
+12
+Stealth Skill Check: Sir Studly (Disadvantage)
+2d20kl + 0 + 10 = 2 + 0 + 10 = 12
+---------------------------
+[12/2/2021, 10:48:18 PM] Leeania
+33
+Stealth Skill Check: Leeania
+1d20 + 3 + 3 + 10 = 17 + 3 + 3 + 10 = 33
+---------------------------
+[12/2/2021, 10:55:11 PM] Akira
+15
+Stealth Skill Check: Akira
+1d20 + 1 + 10 = 4 + 1 + 10 = 15
+---------------------------
+[12/2/2021, 10:55:47 PM] Weasel
+25
+Stealth Skill Check: Weasel
+1d20 + 3 + 2 + 10 = 10 + 3 + 2 + 10 = 25
+---------------------------
+[12/2/2021, 11:01:39 PM] Weasel
+26
+Stealth Skill Check: Weasel
+1d20 + 3 + 2 + 10 = 11 + 3 + 2 + 10 = 26
