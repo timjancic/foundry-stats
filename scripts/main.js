@@ -9,9 +9,9 @@ function readFile(input) {
   reader.readAsText(file);
 
   reader.onload = function() {
-    console.log(reader.result);
 
     let rawArray = reader.result.split("---------------------------");
+    console.log(rawArray)
     parseData(rawArray);
   };
 
