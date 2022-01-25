@@ -1,0 +1,8 @@
+//This will be a macro that you can use to collect the dice roll data
+
+let test = 7;
+if (game.data.messages[test].roll) {
+  console.log(game.data.messages[test].flavor)
+}
+
+//JournalEntry.create({name: "test Journal 2", content: `<p>Hello world!</p>`})
