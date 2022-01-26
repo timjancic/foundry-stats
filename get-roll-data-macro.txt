@@ -1,8 +1,14 @@
 //This will be a macro that you can use to collect the dice roll data
 
-let test = 7;
-if (game.data.messages[test].roll) {
-  console.log(game.data.messages[test].flavor)
+let test = 1;
+let messageData = game.data.messages[test];
+if (messageData.roll) {
+  const rollData = JSON.parse(messageData.roll);
+
+  console.log(messageData.speaker.alias);
+  console.log(messageData.flavor);
+  console.log("dice: " + rollData.terms[0].number + "d" + rollData.terms[0].faces);
+  console.log("result: " + rollData.terms[0].results[0].result);
 }
 
-//JournalEntry.create({name: "test Journal 2", content: `<p>Hello world!</p>`})
+//JournalEntry.create({name: "test Journal 2", content: `<p>Hello world!</p>`});
