@@ -1,14 +1,29 @@
 //This will be a macro that you can use to collect the dice roll data
 
-let test = 1;
-let messageData = game.data.messages[test];
-if (messageData.roll) {
-  const rollData = JSON.parse(messageData.roll);
+let dataAll = [];
 
-  console.log(messageData.speaker.alias);
-  console.log(messageData.flavor);
-  console.log("dice: " + rollData.terms[0].number + "d" + rollData.terms[0].faces);
-  console.log("result: " + rollData.terms[0].results[0].result);
+for (let i = 0; i < game.data.messages.length; i++) {
+  let messageData = game.data.messages[i]  
+
+  if (messageData.roll) {
+    const rollData = JSON.parse(messageData.roll); //turn string into object
+    const alias = messageData.speaker.alias ? messageData.speaker.alias : ""; //assign only if it exists
+    const flavor = messageData.flavor ? messageData.flavor : "";
+    const advantageMode = rollData.options.advantageMode ? rollData.options.advantageMode : "";
+    const nDice = rollData.terms[0].number;
+    const faces = rollData.terms[0].faces;
+    const result = rollData.terms[0].results[0].result;
+
+    const dataRoll = [alias,flavor,advantageMode,nDice,faces,result];
+
+    dataAll.push(dataRoll);
+  }
 }
 
-//JournalEntry.create({name: "test Journal 2", content: `<p>Hello world!</p>`});
+let dataString = ``;
+
+for (let i = 0; i < dataAll.length; i++) {
+  dataString = dataString + `[${dataAll[i]}]\n`;
+}
+
+JournalEntry.create({name: "Roll Data", content: `${dataString}`});
