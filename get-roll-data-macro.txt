@@ -9,7 +9,7 @@ for (let i = 0; i < game.data.messages.length; i++) {
     const rollData = JSON.parse(messageData.roll); //turn string into object
     const alias = messageData.speaker.alias ? messageData.speaker.alias : ""; //assign only if it exists
     const flavor = messageData.flavor ? messageData.flavor : "";
-    const advantageMode = rollData.options.advantageMode ? rollData.options.advantageMode : "";
+    const advantageMode = rollData.options.advantageMode != undefined ? rollData.options.advantageMode : "";
     const nDice = rollData.terms[0].number;
     const faces = rollData.terms[0].faces;
     const result = rollData.terms[0].results[0].result;
@@ -23,7 +23,7 @@ for (let i = 0; i < game.data.messages.length; i++) {
 let dataString = ``;
 
 for (let i = 0; i < dataAll.length; i++) {
-  dataString = dataString + `[${dataAll[i]}]\n`;
+  dataString = dataString + `<p>[${dataAll[i]}]</p>`;
 }
 
 JournalEntry.create({name: "Roll Data", content: `${dataString}`});
