@@ -23,7 +23,7 @@ for (let i = 0; i < game.data.messages.length; i++) {
 let dataString = ``;
 
 for (let i = 0; i < dataAll.length; i++) {
-  dataString = dataString + `<p>[${dataAll[i]}]</p>`;
+  dataString = dataString + `${dataAll[i]}<br>`;
 }
 
-JournalEntry.create({name: "Roll Data", content: `${dataString}`});
+JournalEntry.create({name: "Roll Data", content: `<p>${dataString}</p>`});
