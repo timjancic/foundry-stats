@@ -1,10 +1,19 @@
 const diceTypes = ["d100","d20","d12","d10","d8","d6","d4","d2"];
 const dataNames = ["alias","flavor","advantageMode","nDice","faces","result"];
-const pcArray = ["Brotir","Berserker"];
-let pcStats = [...Array(pcArray.length)];
-pcStats.fill([]);
-console.log(pcStats);
 
+/*
+the stats (not data) for each alias is organized in a table as follows. Each name is a column of data
+[ ["attack roll result", "attack name"],["damage roll result", "damage name"], ["skill result","skill name"], ["d20 data","advantage data"] ];
+for example:
+18, sword - 8, sword - 17
+*/
+//const statNames = ["attack roll data", "attack names", "damage roll data", "damage names", "skill data", ]
+const pcArray = ["Brotir","Berserker"];
+let pcData = new Array(pcArray.length);
+let dmData = [[]];
+let pcStats = new Array(pcArray.length);
+let dmStats = [[]];
+for (let i = 0; i < pcData.length; i++) {pcData[i] = []; pcStats[i] = [];} //fill array with empty arrays
 
 function readFile(input) {
   let file = input.files[0];
@@ -33,7 +42,7 @@ function readFile(input) {
 
     console.log(rawArray);
     console.log(dataTable);
-    parseData(dataTable);
+    assignData(dataTable);
   };
 
   reader.onerror = function() {
@@ -42,27 +51,18 @@ function readFile(input) {
 
 }
 
-function parseData(dataTable) {
+function assignData(dataTable) {
   for (let i = 0; i < dataTable.length; i++) {
     for (let j = 0; j < pcArray.length; j++) {
       //match rows with the same alias
-
       if (dataTable[i][0] == pcArray[j]) {
-        console.log("dataTable[" + i + "][0]: " + dataTable[i][0] + " pcArray[" + j + "]: " + pcArray[j]);
-        pcStats[j].push(dataTable[i]);
+        pcData[j].push(dataTable[i]);
+      } else if (dataTable[i][0] != ""){
+        dmData[0].push(dataTable[i]); //if alias exists but is not part of names array, assume it is DM controlled character
       }
     }
   }
 
-  /*
-  count = 0;
-  for (let i = 0; i < rawArray.length; i++) {
-    if (rawArray[i].includes('Brotir')) {
-      count++;
-    }
-  }
-  console.log("Brotir appears " + count + " times!");
-  */
 }
 
 function getRoll(rawSingle) {
