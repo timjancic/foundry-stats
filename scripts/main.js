@@ -1,5 +1,5 @@
 const diceTypes = ["d100","d20","d12","d10","d8","d6","d4","d2"];
-const dataNames = ["alias","flavor","advantageMode","nDice","faces","result","total"];
+const dataNames = ["alias","flavor","advantageMode","nDice","faces","total","results"];
 
 /*
 the profile for each alias is organized in a table as follows. Each name is a column of data
@@ -13,6 +13,28 @@ let dmData = [[]];
 let pcStats = new Array(pcArray.length);
 let dmStats = [[]];
 for (let i = 0; i < pcData.length; i++) {pcData[i] = []; pcStats[i] = [];} //fill array with empty arrays
+
+class StatsProfile {
+  "attackData": {
+    "results": [],
+    "name": [],
+    "alias": []
+  },
+  "damageData": {
+    "results": [],
+    "name": [],
+    "alias": []
+  },
+  "skillData": {
+    "results": [],
+    "name": [],
+    "alias": []
+  },
+  "d20Data": {
+    "results": [],
+    "advantage": []
+  }
+}
 
 function readFile(input) {
   let file = input.files[0];
@@ -72,7 +94,7 @@ function makeProfilePC(aliasData) {
   /*
   this function takes a single index of pcData and synthesizes the data into a profile
   profile = [ ["attack roll result", "attack name"],["damage roll result", "damage name"], ["skill result","skill name"], ["d20 data","advantage data"] ];
-  aliasData = ["alias","flavor","advantageMode","nDice","faces","result"];
+  aliasData = [0 "alias",1 "flavor",2 "advantageMode",3 "nDice",4 "faces",5 "total",6 "results"];
   */
   let attackData = [[],[]];
   let damageData = [[],[]];
@@ -80,6 +102,9 @@ function makeProfilePC(aliasData) {
   let d20Data = [[],[]];
 
   for (let i = 0; i < aliasData.length; i++) {
-
+    //Check the flavor for keywords and then assign data appropriately
+    if (aliasData[i][1].includes("Attack")) {
+      attackData[0].push(aliasData[i][])
+    }
   }
 }
