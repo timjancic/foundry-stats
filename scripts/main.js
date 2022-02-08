@@ -15,26 +15,26 @@ let dmStats = [[]];
 for (let i = 0; i < pcData.length; i++) {pcData[i] = []; pcStats[i] = [];} //fill array with empty arrays
 
 class StatsProfile {
-  "attackData": {
-    "results": [],
-    "name": [],
-    "alias": []
+  attackData: {
+    results: [],
+    name: [],
+    alias: []
   },
-  "damageData": {
-    "results": [],
-    "name": [],
-    "alias": []
+  damageData: {
+    results: [],
+    name: [],
+    alias: []
   },
-  "skillData": {
-    "results": [],
-    "name": [],
-    "alias": []
+  skillData: {
+    results: [],
+    name: [],
+    alias: []
   },
-  "d20Data": {
-    "results": [],
-    "advantage": []
+  d20Data: {
+    results: [],
+    advantage: []
   }
-}
+};
 
 function readFile(input) {
   let file = input.files[0];
