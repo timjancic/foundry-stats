@@ -14,27 +14,41 @@ let pcStats = new Array(pcArray.length);
 let dmStats = [[]];
 for (let i = 0; i < pcData.length; i++) {pcData[i] = []; pcStats[i] = [];} //fill array with empty arrays
 
-class StatsProfile {
-  attackData: {
-    results: [],
-    name: [],
-    alias: []
-  },
-  damageData: {
-    results: [],
-    name: [],
-    alias: []
-  },
-  skillData: {
-    results: [],
-    name: [],
-    alias: []
-  },
-  d20Data: {
-    results: [],
-    advantage: []
+class statsProfile {
+  constructer () {
+    this.attackData = {
+      constructer () {
+        this.results = [];
+        this.name = [];
+        this.alias = [];
+      }
+    };
+
+    this.skillData = {
+      constructer () {
+        this.results = [];
+        this.name = [];
+        this.alias = [];
+      }
+    };
   }
 };
+
+/*
+skillData: {
+  constructer () {
+    this.results = [];
+    this.name = [];
+    this.alias = [];
+  }
+},
+d20Data: {
+  constructer () {
+    this.results = [];
+    this.advantage = [];
+  }
+}
+*/
 
 function readFile(input) {
   let file = input.files[0];
@@ -104,7 +118,7 @@ function makeProfilePC(aliasData) {
   for (let i = 0; i < aliasData.length; i++) {
     //Check the flavor for keywords and then assign data appropriately
     if (aliasData[i][1].includes("Attack")) {
-      attackData[0].push(aliasData[i][])
+      attackData[0].push(aliasData[i][5]) //temporary?
     }
   }
 }
