@@ -14,56 +14,32 @@ let pcStats = new Array(pcArray.length);
 let dmStats = [[]];
 for (let i = 0; i < pcData.length; i++) {pcData[i] = []; pcStats[i] = [];} //fill array with empty arrays
 
-class statsProfile {
-  constructer () {
+class StatsProfile {
+  constructor () {
     this.attackData = {
-      constructer () {
-        this.results = [0];
-        this.name = [0];
-        this.alias = [0];
-      }
+      results: [],
+      name: [],
+      alias: []
+    };
+
+    this.damageData = {
+      results: [],
+      name: [],
+      alias: []
     };
 
     this.skillData = {
-      constructer () {
-        this.results = [0];
-        this.name = [0];
-        this.alias = [0];
-      }
-    };
-
-    this.skillData = {
-      constructer () {
-        this.results = [0];
-        this.name = [0];
-        this.alias = [0];
-      }
+      results: [],
+      name: [],
+      alias: []
     };
 
     this.d20Data = {
-      constructer () {
-        this.results = [0];
-        this.advantage = [0];
-      }
+      results: [],
+      advantage: []
     };
   }
 }
-
-/*
-skillData: {
-  constructer () {
-    this.results = [];
-    this.name = [];
-    this.alias = [];
-  }
-},
-d20Data: {
-  constructer () {
-    this.results = [];
-    this.advantage = [];
-  }
-}
-*/
 
 function readFile(input) {
   let file = input.files[0];
@@ -80,18 +56,6 @@ function readFile(input) {
     //create a table of values from the info
     for (let i = 0; i < rawArray.length; i++) {
       dataTable[i] = JSON.parse(rawArray[i]);
-
-      // dataTable[i] = rawArray[i].split(",");
-      //turn blank numbers into 0 and number strings into integers
-      /*
-      for (let j = 2; j < dataTable[i].length; j++) {
-        if (dataTable[i][j] == "") {
-          dataTable[i][j] = 0;
-          continue;
-        }
-        dataTable[i][j] = parseInt(dataTable[i][j]);
-      }
-      */
     }
 
     console.log(rawArray);
