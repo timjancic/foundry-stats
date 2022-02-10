@@ -18,21 +18,36 @@ class statsProfile {
   constructer () {
     this.attackData = {
       constructer () {
-        this.results = [];
-        this.name = [];
-        this.alias = [];
+        this.results = [0];
+        this.name = [0];
+        this.alias = [0];
       }
     };
 
     this.skillData = {
       constructer () {
-        this.results = [];
-        this.name = [];
-        this.alias = [];
+        this.results = [0];
+        this.name = [0];
+        this.alias = [0];
+      }
+    };
+
+    this.skillData = {
+      constructer () {
+        this.results = [0];
+        this.name = [0];
+        this.alias = [0];
+      }
+    };
+
+    this.d20Data = {
+      constructer () {
+        this.results = [0];
+        this.advantage = [0];
       }
     };
   }
-};
+}
 
 /*
 skillData: {
