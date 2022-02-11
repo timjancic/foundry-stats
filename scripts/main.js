@@ -1,35 +1,25 @@
 const diceTypes = ["d100","d20","d12","d10","d8","d6","d4","d2"];
 const dataNames = ["alias","flavor","advantageMode","nDice","faces","total","results"];
 
-/*
-the profile for each alias is organized in a table as follows. Each name is a column of data
-[ ["attack roll result", "attack name"],["damage roll result", "damage name"], ["skill result","skill name"], ["d20 data","advantage data"] ];
-for example:
-18, sword - 8, sword - 17
-*/
-const pcArray = ["Brotir","Zanna"];
-let pcData = new Array(pcArray.length);
-let dmData = [[]];
-let pcStats = new Array(pcArray.length);
-let dmStats = [[]];
-for (let i = 0; i < pcData.length; i++) {pcData[i] = []; pcStats[i] = [];} //fill array with empty arrays
 
 class StatsProfile {
   constructor () {
     this.attackData = {
-      results: [],
+      total: [],
       name: [],
       alias: []
     };
 
     this.damageData = {
       results: [],
+      total: [],
       name: [],
       alias: []
     };
 
+    //skillData includes ability checks, skill checks, and saving throws
     this.skillData = {
-      results: [],
+      total: [],
       name: [],
       alias: []
     };
@@ -40,6 +30,13 @@ class StatsProfile {
     };
   }
 }
+
+const pcArray = ["Brotir","Zanna"]; //temporary test names, will gather from user in future.
+let pcData = new Array(pcArray.length);
+let dmData = [[]];
+let pcStats = new Array(pcArray.length);
+let dmStats = new StatsProfile();
+for (let i = 0; i < pcData.length; i++) {pcData[i] = []; pcStats[i] = new StatsProfile();} //fill array with empty arrays
 
 function readFile(input) {
   let file = input.files[0];
@@ -58,9 +55,24 @@ function readFile(input) {
       dataTable[i] = JSON.parse(rawArray[i]);
     }
 
-    console.log(rawArray);
-    console.log(dataTable);
-    assignData(dataTable);
+    let assignment = new Promise((resolve,reject) => {
+      if (assignData(dataTable)) {
+        resolve();
+      } else {
+        reject();
+        console.log("There was an error in assigning the data");
+      }
+      console.log("assignment finished");
+    });
+
+    assignment.then(() => {
+      for (let i = 0; i < pcData.length; i++) {
+        makeProfile(pcData[i],pcStats[i]);
+      }
+      makeProfile(dmData[0],dmStats);
+      console.log("profiles finished");
+    });
+
   };
 
   reader.onerror = function() {
@@ -81,23 +93,47 @@ function assignData(dataTable) {
       }
     }
   }
+
+  return true;
 }
 
-function makeProfilePC(aliasData) {
+function makeProfile(aliasData,profile) {
   /*
-  this function takes a single index of pcData and synthesizes the data into a profile
-  profile = [ ["attack roll result", "attack name"],["damage roll result", "damage name"], ["skill result","skill name"], ["d20 data","advantage data"] ];
+  this function takes a single set of pcData (or dmData) and synthesizes the data into a profile for a given profile of the global variable pcStats
+  WARNING: profile and aliasData are linked to global variables. This function alters the given profile.
   aliasData = [0 "alias",1 "flavor",2 "advantageMode",3 "nDice",4 "faces",5 "total",6 "results"];
   */
-  let attackData = [[],[]];
-  let damageData = [[],[]];
-  let skillData = [[],[]];
-  let d20Data = [[],[]];
 
   for (let i = 0; i < aliasData.length; i++) {
     //Check the flavor for keywords and then assign data appropriately
+    let tempName;
+
+    //if the number of faces is equal to 20, assign d20 data
+    if (aliasData[i][4] == 20) {
+      profile.d20Data.results.push(aliasData[i][6]);
+      profile.d20Data.advantage.push(aliasData[i][2]);
+    }
+
+    //assign data depending on what is in "flavor"
     if (aliasData[i][1].includes("Attack")) {
-      attackData[0].push(aliasData[i][5]) //temporary?
+      tempName = aliasData[i][1].split(" - ")[0]; //split up flavor and assign first half which is the name of the attack used
+
+      profile.attackData.total.push(aliasData[i][5]);
+      profile.attackData.name.push(tempName);
+      profile.attackData.alias.push(aliasData[i][0]);
+    } else if (aliasData[i][1].includes("Check") || aliasData[i][1].includes("Saving")) {
+      tempName = aliasData[i][1].split(":")[0]; //split up flavor and assign first half which is the name of the roll
+
+      profile.skillData.total.push(aliasData[i][5]);
+      profile.skillData.name.push(tempName);
+      profile.skillData.alias.push(aliasData[i][0]);
+    } else if (aliasData[i][1].includes("Damage")) {
+      tempName = aliasData[i][1].split(" - ")[0]; //split up flavor and assign first half which is the name of the roll
+
+      profile.damageData.total.push(aliasData[i][5]);
+      profile.damageData.results.push(aliasData[i][6]);
+      profile.damageData.name.push(tempName);
+      profile.damageData.alias.push(aliasData[i][0]);
     }
   }
 }
