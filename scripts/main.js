@@ -1,5 +1,7 @@
 const diceTypes = ["d100","d20","d12","d10","d8","d6","d4","d2"];
 const dataNames = ["alias","flavor","advantageMode","nDice","faces","total","results"];
+const abilities = ["Strength","Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
+const skills = ["Acrobatics","Animal Handling","Arcana","Athletics","Deception","History","Insight","Intimidation","Investigation","Medicine","Nature","Perception","Performance","Persuasion","Religion","Sleight of Hand","Stealth","Survival"];
 
 
 class StatsProfile {
@@ -25,9 +27,48 @@ class StatsProfile {
     };
 
     this.d20Data = {
-      results: [],
-      advantage: []
+      results: [], //values of d20 rolls before modifiers
+      advantage: [] //list of advantageModes, 1 = advantage, -1 = disadvantage
     };
+
+    this.meta = {
+      nd20Array: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //each index stands for number of times a value was rolled, used for histogram
+      nAbilityArray: [0,0,0,0,0,0], //number of times each ability was used, in order of abilities constant
+      nSaveArray: [0,0,0,0,0,0], //number of times each saving throw was used, in order of abilities constant
+      nSkillArray: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //number of times each skill was used, in alphabetical order as in skills constant
+      avgd20: 0, //average d20 roll before modifiers
+      avgAttack: 0, //average attack roll total (including modifiers)
+      avgAttackArray: [], //average roll per attack type, should be in format [[average,name],[average,name]...]
+      avgAbility: 0, //average ability, skill or saving throw roll total (including modifiers)
+      avgAbilityArray: [], //average roll per skill,ability,save type, should be in format [[average,name],[average,name]...]
+      favAttack: null, //most used attack
+      favAbility: null, //most used ability or skill for checks
+      damageSum: 0, //sum of damage dealt
+      damageMax: 0, //max damage dealt in one roll
+      nAdv: 0, //number of times with advantage
+      nDis: 0 //number of times with disadvantage
+    }
+  }
+
+  analyzeData() {
+    //first analyze d20 data
+    let count = 0;
+    let sum = 0.0;
+
+    for (let i = 0; i < this.d20Data.results.length; i++) {
+      if (this.d20Data.advantage[i] == 1) {
+        this.meta.nAdv++;
+      } else if (this.d20Data.advantage[i] == -1) {
+        this.meta.nDis++;
+      }
+
+      for (let j = 0; j < this.d20Data.results[i].length; j++) {
+        this.meta.nd20Array[this.d20Data.results[i][j] - 1]++; //add one in location of value
+        count++;
+        sum = sum + this.d20Data.results[i][j];
+      }
+    }
+    this.meta.avgd20 = sum/count;
   }
 }
 
@@ -58,11 +99,11 @@ function readFile(input) {
     let assignment = new Promise((resolve,reject) => {
       if (assignData(dataTable)) {
         resolve();
+        console.log("assignment finished");
       } else {
         reject();
         console.log("There was an error in assigning the data");
       }
-      console.log("assignment finished");
     });
 
     assignment.then(() => {
@@ -71,6 +112,12 @@ function readFile(input) {
       }
       makeProfile(dmData[0],dmStats);
       console.log("profiles finished");
+    })
+    .then(() => {
+      for (let i = 0; i < pcData.length; i++) {
+        pcStats[i].analyzeData();
+      }
+      console.log("profile data analyzed");
     });
 
   };
