@@ -38,9 +38,9 @@ class StatsProfile {
       nSkillArray: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //number of times each skill was used, in alphabetical order as in skills constant
       avgd20: 0, //average d20 roll before modifiers
       avgAttack: 0, //average attack roll total (including modifiers)
-      avgAttackArray: [], //average roll per attack type, should be in format [[average,name],[average,name]...]
+      avgAttackArray: [], //average roll per attack type, should be in format [[average,times used, name],[average,times used, name]...]
       avgAbility: 0, //average ability, skill or saving throw roll total (including modifiers)
-      avgAbilityArray: [], //average roll per skill,ability,save type, should be in format [[average,name],[average,name]...]
+      avgAbilityArray: [], //average roll per skill,ability,save type, should be in format [[average,times used, name],[average,times used, name]...]
       favAttack: null, //most used attack
       favAbility: null, //most used ability or skill for checks
       damageSum: 0, //sum of damage dealt
@@ -51,10 +51,13 @@ class StatsProfile {
   }
 
   analyzeData() {
-    //first analyze d20 data
     let count = 0;
     let sum = 0.0;
+    let namesUnique;
+    let nNamesUsed; //for keeping track of how many times a unique name is used.
+    let namesSum;
 
+    //first analyze d20 data
     for (let i = 0; i < this.d20Data.results.length; i++) {
       if (this.d20Data.advantage[i] == 1) {
         this.meta.nAdv++;
@@ -69,7 +72,46 @@ class StatsProfile {
       }
     }
     this.meta.avgd20 = sum/count;
+
+    //reset count and sum
+    count = 0;
+    sum = 0.0;
+
+    //analyze
+    //attack
+    //data
+    namesUnique = Array.from(new Set(this.attackData.name)); //unique list of names used
+    nNamesUsed = new Array(namesUnique.length); //number of times each unique name is rolled
+    nNamesUsed.fill(0);
+    namesSum = new Array(namesUnique.length); //sum of results of each unique attack so that the average can be found.
+    namesSum.fill(0);
+
+    for (let i = 0; i < this.attackData.name.length; i++) {
+      nNamesUsed[namesUnique.indexOf(this.attackData.name[i])]++; //increase the associated nNamesUsed of namesUnique by one each time it appears.
+      namesSum[namesUnique.indexOf(this.attackData.name[i])] = namesSum[namesUnique.indexOf(this.attackData.name[i])] + this.attackData.total[i]; //temporarily sum associated rolls
+      count++;
+      sum = sum + this.attackData.total[i];
+    }
+    this.meta.avgAttack = sum/count;
+
+    let maxTimesUsed = 0;
+    for (let i = 0; i < namesUnique.length; i++) {
+      this.meta.avgAttackArray.push([namesSum[i]/nNamesUsed[i],nNamesUsed[i],namesUnique[i]]); // create table where a row is [average,times used, name]
+      if (maxTimesUsed < nNamesUsed[i]) {
+        this.meta.favAttack = namesUnique[i];
+      }
+    }
+
+    //reset count and sum
+    count = 0;
+    sum = 0.0;
+
+    //analyze
+    //damage
+    //data
+
   }
+
 }
 
 const pcArray = ["Brotir","Zanna"]; //temporary test names, will gather from user in future.
