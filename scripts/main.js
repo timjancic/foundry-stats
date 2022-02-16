@@ -44,6 +44,7 @@ class StatsProfile {
       favAttack: null, //most used attack
       favAbility: null, //most used ability or skill for checks
       damageSum: 0, //sum of damage dealt
+      damageArray: [], //list of each weapon and how much total damage was done with each in format [[sum, times used, name]...]
       damageMax: 0, //max damage dealt in one roll
       nAdv: 0, //number of times with advantage
       nDis: 0 //number of times with disadvantage
@@ -56,6 +57,7 @@ class StatsProfile {
     let namesUnique;
     let nNamesUsed; //for keeping track of how many times a unique name is used.
     let namesSum;
+
 
     //first analyze d20 data
     for (let i = 0; i < this.d20Data.results.length; i++) {
@@ -77,9 +79,9 @@ class StatsProfile {
     count = 0;
     sum = 0.0;
 
-    //analyze
-    //attack
-    //data
+    //ANALYZE
+    //ATTACK
+    //DATA
     namesUnique = Array.from(new Set(this.attackData.name)); //unique list of names used
     nNamesUsed = new Array(namesUnique.length); //number of times each unique name is rolled
     nNamesUsed.fill(0);
@@ -106,9 +108,35 @@ class StatsProfile {
     count = 0;
     sum = 0.0;
 
-    //analyze
-    //damage
-    //data
+    //ANALYZE
+    //DAMAGE
+    //DATA
+
+    //reset arrays
+    namesUnique = Array.from(new Set(this.damageData.name)); //unique list of names used
+    nNamesUsed = new Array(namesUnique.length); //number of times each unique name is rolled
+    nNamesUsed.fill(0);
+    namesSum = new Array(namesUnique.length); //sum of results of each unique damage so that total damage of each weapon can be found.
+    namesSum.fill(0);
+
+    let maximumDamage = 0;
+    for (let i = 0; i < this.damageData.name.length; i++) {
+      nNamesUsed[namesUnique.indexOf(this.damageData.name[i])]++; //increase the associated nNamesUsed of namesUnique by one each time it appears.
+      namesSum[namesUnique.indexOf(this.damageData.name[i])] = namesSum[namesUnique.indexOf(this.damageData.name[i])] + this.damageData.total[i]; //sum associated rolls
+
+      sum = sum + this.damageData.total[i];
+      if (this.damageData.total[i] > maximumDamage) {
+        maximumDamage = this.damageData.total[i];
+      }
+    }
+    this.meta.damageSum = sum;
+    this.meta.damageMax = maximumDamage;
+
+    for (let i = 0; i < namesUnique.length; i++) {
+      this.meta.damageArray.push([namesSum[i],nNamesUsed[i],namesUnique[i]]); //create table where a row is [damage sum, times used, name]
+    }
+
+
 
   }
 
