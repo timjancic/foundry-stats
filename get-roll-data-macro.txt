@@ -17,8 +17,6 @@ for (let i = 0; i < game.data.messages.length; i++) {
     for (let i = 0; i < rollData.terms[0].results.length; i++) {
       results.push(rollData.terms[0].results[i].result);
     }
-    console.log(results);
-    //const result = rollData.terms[0].results[0].result;
     const total = rollData.total;
 
     const dataRoll = [`"${alias}"`,`"${flavor}"`,advantageMode,nDice,faces,total,JSON.stringify(results)];
