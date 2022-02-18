@@ -41,8 +41,8 @@ class StatsProfile {
       avgAttackArray: [], //average roll per attack type, should be in format [[average,times used, name],[average,times used, name]...]
       avgAbility: 0, //average ability, skill or saving throw roll total (including modifiers)
       avgAbilityArray: [], //average roll per skill,ability,save type, should be in format [[average,times used, name],[average,times used, name]...]
-      favAttack: null, //most used attack based off of how many times damage is rolled or how many times an attack was rolled, whichever is higher
-      favAbility: null, //most used ability or skill for checks
+      favAttack: "", //most used attack based off of how many times damage is rolled or how many times an attack was rolled, whichever is higher
+      favAbility: "", //most used ability or skill for checks
       damageSum: 0, //sum of damage dealt
       damageArray: [], //list of each weapon and how much total damage was done with each in format [[sum, times used, name]...]
       damageMax: [0,""], //max damage dealt in one roll, format [Max damage, name of attack used]
@@ -90,7 +90,7 @@ class StatsProfile {
 
     for (let i = 0; i < this.attackData.name.length; i++) {
       nNamesUsed[namesUnique.indexOf(this.attackData.name[i])]++; //increase the associated nNamesUsed of namesUnique by one each time it appears.
-      namesSum[namesUnique.indexOf(this.attackData.name[i])] = namesSum[namesUnique.indexOf(this.attackData.name[i])] + this.attackData.total[i]; //temporarily sum associated rolls
+      namesSum[namesUnique.indexOf(this.attackData.name[i])] += this.attackData.total[i]; //temporarily sum associated rolls
       count++;
       sum = sum + this.attackData.total[i];
     }
@@ -126,7 +126,7 @@ class StatsProfile {
     let maximumDamageName = "";
     for (let i = 0; i < this.damageData.name.length; i++) {
       nNamesUsed[namesUnique.indexOf(this.damageData.name[i])]++; //increase the associated nNamesUsed of namesUnique by one each time it appears.
-      namesSum[namesUnique.indexOf(this.damageData.name[i])] = namesSum[namesUnique.indexOf(this.damageData.name[i])] + this.damageData.total[i]; //sum associated rolls
+      namesSum[namesUnique.indexOf(this.damageData.name[i])] += this.damageData.total[i]; //sum associated rolls
 
       sum = sum + this.damageData.total[i];
       if (this.damageData.total[i] > maximumDamage) {
@@ -153,7 +153,64 @@ class StatsProfile {
     //AND SAVING THROW
     //DATA
 
+    //reset arrays
+    namesUnique = Array.from(new Set(this.skillData.name)); //unique list of names used
+    nNamesUsed = new Array(namesUnique.length); //number of times each unique name is rolled
+    nNamesUsed.fill(0);
+    namesSum = new Array(namesUnique.length); //sum of results of each unique damage so that total damage of each weapon can be found.
+    namesSum.fill(0);
 
+    //reset count and sum
+    count = 0;
+    sum = 0.0;
+
+    //reset maxTimesUsed now that it is no longer needed for attack and damage
+    maxTimesUsed = 0;
+
+    for (let i = 0; i < this.skillData.name.length; i++) {
+      nNamesUsed[namesUnique.indexOf(this.skillData.name[i])]++; //increase the associated nNamesUsed of namesUnique by one each time it appears.
+      namesSum[namesUnique.indexOf(this.skillData.name[i])] += this.skillData.total[i]; //temporarily sum associated rolls
+      count++;
+      sum = sum + this.skillData.total[i];
+
+      //find out which skill, ability, or saving throw this is and increase the appropriate array index
+      if (this.skillData.name[i].includes("Saving")) {
+        //cycle through names of abilities to see if the name of the skill has the ability that matches it
+        for (let j = 0; j < abilities.length; j++) {
+          if (this.skillData.name[i].includes(abilities[j])) {
+            this.meta.nSaveArray[j]++;
+            break;
+          }
+        }
+      } else if (this.skillData.name[i].includes("Ability")) {
+        //cycle through names of abilities to see if the name of the skill has the ability that matches it
+        for (let j = 0; j < abilities.length; j++) {
+          if (this.skillData.name[i].includes(abilities[j])) {
+            this.meta.nAbilityArray[j]++;
+            break;
+          }
+        }
+      } else if (this.skillData.name[i].includes("Skill")) {
+        //cycle through names of skills to see if the name of the skill has the ability that matches it
+        for (let j = 0; j < skills.length; j++) {
+          if (this.skillData.name[i].includes(skills[j])) {
+            this.meta.nSkillArray[j]++;
+            break;
+          }
+        }
+      }
+    }
+    this.meta.avgAbility = sum/count;
+
+    for (let i = 0; i < namesUnique.length; i++) {
+      this.meta.avgAbilityArray.push([namesSum[i]/nNamesUsed[i],nNamesUsed[i],namesUnique[i]]); // create table where a row is [average,times used, name]
+
+      //Check if the number of times this damage was used is more than the current max
+      if (maxTimesUsed < nNamesUsed[i]) {
+        this.meta.favAbility = namesUnique[i];
+        maxTimesUsed = nNamesUsed[i];
+      }
+    }
   }
 
 }
