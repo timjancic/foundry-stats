@@ -41,7 +41,7 @@ class StatsProfile {
       avgAttackArray: [], //average roll per attack type, should be in format [[average,times used, name],[average,times used, name]...]
       avgAbility: 0, //average ability, skill or saving throw roll total (including modifiers)
       avgAbilityArray: [], //average roll per skill,ability,save type, should be in format [[average,times used, name],[average,times used, name]...]
-      favAttack: null, //most used attack based off of how many times damage is rolled
+      favAttack: null, //most used attack based off of how many times damage is rolled or how many times an attack was rolled, whichever is higher
       favAbility: null, //most used ability or skill for checks
       damageSum: 0, //sum of damage dealt
       damageArray: [], //list of each weapon and how much total damage was done with each in format [[sum, times used, name]...]
@@ -96,9 +96,15 @@ class StatsProfile {
     }
     this.meta.avgAttack = sum/count;
 
-
+    let maxTimesUsed = 0;
     for (let i = 0; i < namesUnique.length; i++) {
       this.meta.avgAttackArray.push([namesSum[i]/nNamesUsed[i],nNamesUsed[i],namesUnique[i]]); // create table where a row is [average,times used, name]
+
+      //Check if the number of times this damage was used is more than the current max
+      if (maxTimesUsed < nNamesUsed[i]) {
+        this.meta.favAttack = namesUnique[i];
+        maxTimesUsed = nNamesUsed[i];
+      }
     }
 
     //reset count and sum
@@ -131,9 +137,10 @@ class StatsProfile {
     this.meta.damageSum = sum;
     this.meta.damageMax = [maximumDamage,maximumDamageName];
 
-    let maxTimesUsed = 0;
     for (let i = 0; i < namesUnique.length; i++) {
       this.meta.damageArray.push([namesSum[i],nNamesUsed[i],namesUnique[i]]); //create table where a row is [damage sum, times used, name]
+
+      //Check if the number of times this damage was used is more than the current max
       if (maxTimesUsed < nNamesUsed[i]) {
         this.meta.favAttack = namesUnique[i];
         maxTimesUsed = nNamesUsed[i];
