@@ -41,7 +41,7 @@ class StatsProfile {
       avgAttackArray: [], //average roll per attack type, should be in format [[average,times used, name],[average,times used, name]...]
       avgAbility: 0, //average ability, skill or saving throw roll total (including modifiers)
       avgAbilityArray: [], //average roll per skill,ability,save type, should be in format [[average,times used, name],[average,times used, name]...]
-      favAttack: null, //most used attack
+      favAttack: null, //most used attack based off of how many times damage is rolled
       favAbility: null, //most used ability or skill for checks
       damageSum: 0, //sum of damage dealt
       damageArray: [], //list of each weapon and how much total damage was done with each in format [[sum, times used, name]...]
@@ -96,12 +96,9 @@ class StatsProfile {
     }
     this.meta.avgAttack = sum/count;
 
-    let maxTimesUsed = 0;
+
     for (let i = 0; i < namesUnique.length; i++) {
       this.meta.avgAttackArray.push([namesSum[i]/nNamesUsed[i],nNamesUsed[i],namesUnique[i]]); // create table where a row is [average,times used, name]
-      if (maxTimesUsed < nNamesUsed[i]) {
-        this.meta.favAttack = namesUnique[i];
-      }
     }
 
     //reset count and sum
@@ -132,17 +129,28 @@ class StatsProfile {
     this.meta.damageSum = sum;
     this.meta.damageMax = maximumDamage;
 
+    let maxTimesUsed = 0;
     for (let i = 0; i < namesUnique.length; i++) {
       this.meta.damageArray.push([namesSum[i],nNamesUsed[i],namesUnique[i]]); //create table where a row is [damage sum, times used, name]
+      if (maxTimesUsed < nNamesUsed[i]) {
+        this.meta.favAttack = namesUnique[i];
+        maxTimesUsed = nNamesUsed[i];
+      }
     }
 
+    //ANALYZE
+    //ABILITY,
+    //SKILL,
+    //AND SAVING THROW
+    //DATA
 
 
   }
 
 }
 
-const pcArray = ["Brotir","Zanna"]; //temporary test names, will gather from user in future.
+//const pcArray = ["Brotir","Zanna"]; //temporary test names, will gather from user in future.
+const pcArray = ["Akira","Almorah","Leeania","Sevante","Sir Studly"];
 let pcData = new Array(pcArray.length);
 let dmData = [[]];
 let pcStats = new Array(pcArray.length);
@@ -202,7 +210,7 @@ function assignData(dataTable) {
   for (let i = 0; i < dataTable.length; i++) {
     for (let j = 0; j < pcArray.length; j++) {
       //match rows with the same alias
-      if (dataTable[i][0] == pcArray[j]) {
+      if (dataTable[i][0].includes(pcArray[j])) {
         pcData[j].push(dataTable[i]);
         break; //break the for loop since there is only be one alias per row of data.
       } else if (dataTable[i][0] != "" && j == pcArray.length - 1){
@@ -232,7 +240,15 @@ function makeProfile(aliasData,profile) {
     }
 
     //assign data depending on what is in "flavor"
-    if (aliasData[i][1].includes("Attack")) {
+    if (aliasData[i][1].includes("Damage")) {
+      tempName = aliasData[i][1].split(" - ")[0]; //split up flavor and assign first half which is the name of the roll
+
+      profile.damageData.total.push(aliasData[i][5]);
+      profile.damageData.results.push(aliasData[i][6]);
+      profile.damageData.name.push(tempName);
+      profile.damageData.alias.push(aliasData[i][0]);
+    } else if (aliasData[i][1].includes("Attack")) {
+      //check for Attack 2nd because otherwise "Sneak Attack - Damage, gets added to attack rolls"
       tempName = aliasData[i][1].split(" - ")[0]; //split up flavor and assign first half which is the name of the attack used
 
       profile.attackData.total.push(aliasData[i][5]);
@@ -244,13 +260,6 @@ function makeProfile(aliasData,profile) {
       profile.skillData.total.push(aliasData[i][5]);
       profile.skillData.name.push(tempName);
       profile.skillData.alias.push(aliasData[i][0]);
-    } else if (aliasData[i][1].includes("Damage")) {
-      tempName = aliasData[i][1].split(" - ")[0]; //split up flavor and assign first half which is the name of the roll
-
-      profile.damageData.total.push(aliasData[i][5]);
-      profile.damageData.results.push(aliasData[i][6]);
-      profile.damageData.name.push(tempName);
-      profile.damageData.alias.push(aliasData[i][0]);
     }
   }
 }
