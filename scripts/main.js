@@ -45,7 +45,7 @@ class StatsProfile {
       favAbility: null, //most used ability or skill for checks
       damageSum: 0, //sum of damage dealt
       damageArray: [], //list of each weapon and how much total damage was done with each in format [[sum, times used, name]...]
-      damageMax: 0, //max damage dealt in one roll
+      damageMax: [0,""], //max damage dealt in one roll, format [Max damage, name of attack used]
       nAdv: 0, //number of times with advantage
       nDis: 0 //number of times with disadvantage
     }
@@ -117,6 +117,7 @@ class StatsProfile {
     namesSum.fill(0);
 
     let maximumDamage = 0;
+    let maximumDamageName = "";
     for (let i = 0; i < this.damageData.name.length; i++) {
       nNamesUsed[namesUnique.indexOf(this.damageData.name[i])]++; //increase the associated nNamesUsed of namesUnique by one each time it appears.
       namesSum[namesUnique.indexOf(this.damageData.name[i])] = namesSum[namesUnique.indexOf(this.damageData.name[i])] + this.damageData.total[i]; //sum associated rolls
@@ -124,10 +125,11 @@ class StatsProfile {
       sum = sum + this.damageData.total[i];
       if (this.damageData.total[i] > maximumDamage) {
         maximumDamage = this.damageData.total[i];
+        maximumDamageName = this.damageData.name[i];
       }
     }
     this.meta.damageSum = sum;
-    this.meta.damageMax = maximumDamage;
+    this.meta.damageMax = [maximumDamage,maximumDamageName];
 
     let maxTimesUsed = 0;
     for (let i = 0; i < namesUnique.length; i++) {
